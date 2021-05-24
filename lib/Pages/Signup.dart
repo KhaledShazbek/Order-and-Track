@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:order_and_track/CustomWidgets/CustomButton.dart';
 import 'package:order_and_track/CustomWidgets/CustomTextField.dart';
+import '../HttpMethods/httpMethods.dart';
 
 class Signup extends StatefulWidget {
   @override
@@ -111,7 +112,19 @@ class _SignupState extends State<Signup> {
             ),
             CustomButton(
               () {
-                print(nameHolder.controller.text);
+                if (passwordHolder.controller.text ==
+                    confirmPasswordHolder.controller.text) {
+                  HttpMethods(context).signUp(
+                      nameHolder.controller.text,
+                      emailHolder.controller.text,
+                      phoneHolder.controller.text,
+                      passwordHolder.controller.text);
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text('Passwords do not match'),
+                    duration: Duration(seconds: 2),
+                  ));
+                }
               },
               'Sign Up',
               Colors.white,
