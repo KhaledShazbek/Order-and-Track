@@ -14,7 +14,7 @@ Future<void> main() async {
       theme: ThemeData(
         accentColor: Colors.blue,
         primarySwatch: Colors.pink,
-        brightness: Brightness.light,
+        brightness: Brightness.dark,
         fontFamily: GoogleFonts.koHo().fontFamily,
       ),
       home: email == null ? MyApp() : Home()));

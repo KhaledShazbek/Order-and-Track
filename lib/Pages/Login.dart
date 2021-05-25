@@ -54,6 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: TextStyle(
                       fontSize: 28,
                       fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -120,12 +121,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               CustomButton(
                 () => {
-                  
-
                   Authentication(context).login(
                     _emailHolder.controller.text,
                     _passwordController.text,
-                    
                   )
                 },
                 'Sign In',
