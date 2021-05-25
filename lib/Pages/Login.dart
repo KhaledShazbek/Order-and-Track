@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:order_and_track/CustomWidgets/CustomButton.dart';
 import 'package:order_and_track/CustomWidgets/CustomTextField.dart';
 import 'package:order_and_track/Pages/Signup.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../HttpMethods/httpMethods.dart';
 
@@ -10,16 +9,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Order and track',
-      theme: ThemeData(
-        accentColor: Colors.blue,
-        primarySwatch: Colors.pink,
-        brightness: Brightness.dark,
-        fontFamily: GoogleFonts.koHo().fontFamily,
-      ),
-      home: MyHomePage(),
-    );
+    return MyHomePage();
   }
 }
 
@@ -130,8 +120,13 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
               CustomButton(
                 () => {
-                  HttpMethods(context).login(
-                      _emailHolder.controller.text, _passwordController.text)
+                  
+
+                  Authentication(context).login(
+                    _emailHolder.controller.text,
+                    _passwordController.text,
+                    
+                  )
                 },
                 'Sign In',
                 Colors.white,

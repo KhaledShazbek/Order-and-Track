@@ -1,22 +1,25 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Pages/Home.dart';
 
-class HttpMethods {
-  var url = 'orderandtrack.000webhostapp.com';
+class Authentication {
+  var _url = 'orderandtrack.000webhostapp.com';
   BuildContext _context;
-  HttpMethods(this._context);
+  Authentication(this._context);
 
   void login(String email, String password) async {
     var data = {
       "email": email,
       "password": password,
     };
+    SharedPreferences prefsdata = await SharedPreferences.getInstance();
     try {
-      var res = await http.post(Uri.https(url, 'login.php'), body: data);
+      var res = await http.post(Uri.https(_url, 'login.php'), body: data);
       if (jsonDecode(res.body) == 'found') {
+        prefsdata.setString('Email', email);
         Navigator.push(
             _context, MaterialPageRoute(builder: (context) => Home()));
       } else {
@@ -43,9 +46,13 @@ class HttpMethods {
         "phone": phone,
         "password": password
       };
+      SharedPreferences prefsdata = await SharedPreferences.getInstance();
       try {
-        var res = await http.post(Uri.https(url, 'Signup.php'), body: data);
+        var res = await http.post(Uri.https(_url, 'Signup.php'), body: data);
         if (jsonDecode(res.body) == 'Success') {
+          prefsdata.setString('Email', email);
+          prefsdata.setString('Name', name);
+          prefsdata.setString('Phone', phone);
           Navigator.push(
               _context, MaterialPageRoute(builder: (context) => Home()));
         } else {

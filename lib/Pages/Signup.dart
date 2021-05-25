@@ -114,7 +114,7 @@ class _SignupState extends State<Signup> {
               () {
                 if (passwordHolder.controller.text ==
                     confirmPasswordHolder.controller.text) {
-                  HttpMethods(context).signUp(
+                  Authentication(context).signUp(
                       nameHolder.controller.text,
                       emailHolder.controller.text,
                       phoneHolder.controller.text,
